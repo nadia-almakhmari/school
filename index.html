@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع بناء مدرسة القرآن الكريم</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Amiri', serif;
+            background-color: #f8f5f0;
+        }
+        
+        .donation-progress {
+            height: 20px;
+            background-color: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #10b981;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+        
+        .hero-pattern {
+            background-color: #075e54;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .donation-card {
+            transition: all 0.3s ease;
+        }
+        
+        .donation-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold text-emerald-700 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    مدرسة القرآن الكريم
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-1 space-x-reverse">
+                <a href="#home" class="px-3 py-2 text-emerald-700 hover:text-emerald-900 font-medium">الرئيسية</a>
+                <a href="#about" class="px-3 py-2 text-emerald-700 hover:text-emerald-900 font-medium">عن المشروع</a>
+                <a href="#features" class="px-3 py-2 text-emerald-700 hover:text-emerald-900 font-medium">مميزات المدرسة</a>
+                <a href="#donate" class="px-3 py-2 text-emerald-700 hover:text-emerald-900 font-medium">تبرع الآن</a>
+                <a href="#needs" class="px-3 py-2 text-emerald-700 hover:text-emerald-900 font-medium">المتطلبات الحالية</a>
+                <a href="#contact" class="px-3 py-2 text-emerald-700 hover:text-emerald-900 font-medium">اتصل بنا</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-emerald-700 hover:text-emerald-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <a href="#home" class="block px-4 py-2 text-emerald-700 hover:bg-emerald-50 border-b border-gray-100">الرئيسية</a>
+            <a href="#about" class="block px-4 py-2 text-emerald-700 hover:bg-emerald-50 border-b border-gray-100">عن المشروع</a>
+            <a href="#features" class="block px-4 py-2 text-emerald-700 hover:bg-emerald-50 border-b border-gray-100">مميزات المدرسة</a>
+            <a href="#donate" class="block px-4 py-2 text-emerald-700 hover:bg-emerald-50 border-b border-gray-100">تبرع الآن</a>
+            <a href="#needs" class="block px-4 py-2 text-emerald-700 hover:bg-emerald-50 border-b border-gray-100">المتطلبات الحالية</a>
+            <a href="#contact" class="block px-4 py-2 text-emerald-700 hover:bg-emerald-50">اتصل بنا</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-pattern text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">ساهم في بناء مدرسة القرآن الكريم</h1>
+                    <p class="text-xl mb-8 opacity-90">بولاية بركاء - حي عاصم الغربية</p>
+
+                    <p class="text-xl mb-8 opacity-90">شارك في الأجر الجاري وساهم في بناء صرح تعليمي لحفظ كتاب الله وتعليمه للأجيال القادمة</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
+                        <a href="#donate" class="bg-white text-emerald-800 hover:bg-emerald-100 px-8 py-3 rounded-lg font-bold text-center transition-all duration-300 shadow-lg hover:shadow-xl">تبرع الآن</a>
+                        <a href="#about" class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-800 px-8 py-3 rounded-lg font-bold text-center transition-all duration-300">تعرف على المشروع</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="المدرسة.jpg" alt="صورة مدرسة القرآن الكريم" class="rounded-xl shadow-lg w-full max-w-lg" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-emerald-50 p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold text-emerald-700 mb-2">٥٠٠</div>
+                    <div class="text-gray-600">طالب وطالبة مستهدف</div>
+                </div>
+                <div class="bg-emerald-50 p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold text-emerald-700 mb-2">٣٠٠ م²</div>
+                    <div class="text-gray-600">مساحة المدرسة</div>
+                </div>
+                <div class="bg-emerald-50 p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold text-emerald-700 mb-2">٥٠٪</div>
+                    <div class="text-gray-600">نسبة اكتمال المشروع</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-emerald-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-emerald-800 mb-4">عن مشروع بناء مدرسة القرآن الكريم</h2>
+                <div class="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">نسعى لبناء صرح تعليمي متكامل لتحفيظ القرآن الكريم وتعليم علومه، ليكون منارة للعلم والهداية في المجتمع</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <div class="relative">
+                        <svg class="w-full max-w-lg mx-auto" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Building Base -->
+                            <rect x="100" y="200" width="400" height="180" fill="#e2e8f0"/>
+                            
+                            <!-- Main Building -->
+                            <rect x="150" y="100" width="300" height="280" fill="#f8fafc"/>
+                            <rect x="150" y="100" width="300" height="30" fill="#0f766e"/>
+                            
+                            <!-- Dome -->
+                            <ellipse cx="300" cy="100" rx="60" ry="30" fill="#0f766e"/>
+                            <path d="M300 70 L300 40" stroke="#0f766e" stroke-width="5"/>
+                            <circle cx="300" cy="35" r="8" fill="#0f766e"/>
+                            
+                            <!-- Windows -->
+                            <rect x="190" y="150" width="40" height="60" fill="#bae6fd" stroke="#0f766e" stroke-width="2"/>
+                            <rect x="280" y="150" width="40" height="60" fill="#bae6fd" stroke="#0f766e" stroke-width="2"/>
+                            <rect x="370" y="150" width="40" height="60" fill="#bae6fd" stroke="#0f766e" stroke-width="2"/>
+                            
+                            <!-- Door -->
+                            <rect x="280" y="280" width="40" height="100" fill="#7f1d1d"/>
+                            <circle cx="290" cy="330" r="3" fill="#fcd34d"/>
+                            
+                            <!-- Steps -->
+                            <rect x="260" y="380" width="80" height="10" fill="#cbd5e1"/>
+                            <rect x="270" y="390" width="60" height="10" fill="#cbd5e1"/>
+                            
+                            <!-- Minaret -->
+                            <rect x="450" y="150" width="30" height="230" fill="#f8fafc"/>
+                            <polygon points="450,150 480,150 465,100" fill="#0f766e"/>
+                            <circle cx="465" cy="90" r="5" fill="#0f766e"/>
+                            
+                            <!-- Trees -->
+                            <rect x="80" y="350" width="10" height="30" fill="#92400e"/>
+                            <circle cx="85" cy="330" r="20" fill="#15803d"/>
+                            
+                            <rect x="510" y="350" width="10" height="30" fill="#92400e"/>
+                            <circle cx="515" cy="330" r="20" fill="#15803d"/>
+                            
+                            <!-- Ground -->
+                            <rect x="0" y="380" width="600" height="20" fill="#d6d3d1"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pr-8">
+                    <h3 class="text-2xl font-bold text-emerald-700 mb-4">رؤيتنا</h3>
+                    <p class="text-gray-700 mb-6">بناء جيل متمسك بكتاب الله، قادر على فهمه وتطبيقه في حياته اليومية، ليكون نبراسًا يضيء له طريق الهداية والصلاح.</p>
+                    
+                    <h3 class="text-2xl font-bold text-emerald-700 mb-4">أهدافنا</h3>
+                    <ul class="space-y-3 text-gray-700 mb-6">
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 text-emerald-600 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>إنشاء مدرسة نموذجية لتحفيظ القرآن الكريم وتعليم علومه</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 text-emerald-600 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>استيعاب أكبر عدد من الطلاب والطالبات من مختلف الفئات العمرية</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 text-emerald-600 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>توفير بيئة تعليمية متكاملة مجهزة بأحدث الوسائل التعليمية</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 text-emerald-600 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>تخريج حفظة متقنين لكتاب الله تعالى</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-8">
+                        <a href="#donate" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg font-bold inline-block transition-all duration-300 shadow-md hover:shadow-lg">ساهم في المشروع</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-emerald-800 mb-4">مميزات المدرسة</h2>
+                <div class="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">تم تصميم المدرسة وفق أحدث المعايير التعليمية لتوفير بيئة مثالية لتعليم وتحفيظ القرآن الكريم</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-emerald-50 p-6 rounded-lg shadow-md transition-all duration-300">
+                    <div class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="h-8 w-8 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-800 mb-3 text-center">فصول دراسية مجهزة</h3>
+                    <p class="text-gray-600 text-center">فصول دراسية واسعة ومكيفة ومجهزة بأحدث الوسائل التعليمية لتسهيل عملية الحفظ والتعلم</p>
+                </div>
+                
+                
+                 <!--<div class="feature-card bg-emerald-50 p-6 rounded-lg shadow-md transition-all duration-300">
+                    <div class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="h-8 w-8 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-800 mb-3 text-center">مختبر صوتيات</h3>
+                    <p class="text-gray-600 text-center">مختبر صوتيات متطور لتحسين مخارج الحروف وتجويد القرآن الكريم بإشراف معلمين متخصصين</p>
+                </div>-->
+                
+
+                
+                <div class="feature-card bg-emerald-50 p-6 rounded-lg shadow-md transition-all duration-300">
+                    <div class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="h-8 w-8 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-800 mb-3 text-center">كادر تعليمي متميز</h3>
+                    <p class="text-gray-600 text-center">نخبة من المعلمين والمعلمات المتخصصين في تحفيظ القرآن الكريم وعلومه</p>
+                </div>
+                
+                <div class="feature-card bg-emerald-50 p-6 rounded-lg shadow-md transition-all duration-300">
+                    <div class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="h-8 w-8 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-800 mb-3 text-center">مكتبة إسلامية</h3>
+                    <p class="text-gray-600 text-center">مكتبة متكاملة تضم مراجع وكتب في علوم القرآن والتفسير والحديث والفقه</p>
+                </div>
+                
+                <div class="feature-card bg-emerald-50 p-6 rounded-lg shadow-md transition-all duration-300">
+                    <div class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="h-8 w-8 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-800 mb-3 text-center">بيئة آمنة</h3>
+                    <p class="text-gray-600 text-center">بيئة تعليمية آمنة ومحفزة للطلاب والطالبات مع مرافق منفصلة للبنين والبنات</p>
+                </div>
+                
+                <div class="feature-card bg-emerald-50 p-6 rounded-lg shadow-md transition-all duration-300">
+                    <div class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="h-8 w-8 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-emerald-800 mb-3 text-center">أنشطة متنوعة</h3>
+                    <p class="text-gray-600 text-center">برامج وأنشطة متنوعة لتنمية مهارات الطلاب وتعزيز القيم الإسلامية لديهم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="py-16 bg-emerald-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">مراحل المشروع</h2>
+                <div class="w-20 h-1 bg-white mx-auto mb-6"></div>
+                <p class="text-lg opacity-90 max-w-3xl mx-auto">بفضل الله ثم بفضل المتبرعين الكرام، وصلنا إلى مراحل متقدمة في بناء المدرسة</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="mb-8">
+                    <div class="flex justify-between mb-2">
+                        <span class="font-bold">نسبة الإنجاز الكلية</span>
+                        <span class="font-bold">50%</span>
+                    </div>
+                    <div class="donation-progress">
+                        <div class="progress-bar" style="width: 50%"></div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white bg-opacity-10 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">ما تم إنجازه</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-emerald-300 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>حفر الأرض وتسويتها</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-emerald-300 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>وضع الأساسات والهيكل الخرساني</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-emerald-300 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>بناء الجدران الخارجية والداخلية</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-emerald-300 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>البلستر الداخلي والخارجي</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-10 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-4">المراحل المتبقية</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-emerald-300 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>التشطيبات الداخلية والخارجية</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-emerald-300 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>التمديدات الكهربائية والصحية</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-emerald-300 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>تجهيز الفصول والمرافق</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-emerald-300 ml-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>تأثيث المدرسة وتجهيزها بالكامل</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Donation Section -->
+<section id="donate" class="py-20 bg-gradient-to-br from-emerald-50 to-white">
+  <div class="container mx-auto px-6 text-center">
+    
+    <!-- Title -->
+    <h2 class="text-4xl font-extrabold text-emerald-800 mb-4 leading-snug">
+      ✨ كن شريكًا في الأجر <br> وساهم في بناء مدرسة القرآن الكريم
+    </h2>
+    <p class="text-lg text-emerald-700 mb-6">
+      مشروع وقفي - صدقة جارية لك ولوالديك بإذن الله
+    </p>
+    <div class="w-24 h-1 bg-emerald-500 mx-auto mb-10 rounded-full"></div>
+
+    <!-- Bank Info -->
+    <div class="bg-white shadow-lg rounded-xl p-8 mb-10 inline-block border-l-4 border-emerald-500">
+      <h3 class="text-xl font-semibold text-emerald-700 mb-2">حساب المدرسة - بنك ميثاق الإسلامي</h3>
+      <p class="text-3xl font-bold text-emerald-900 tracking-widest">0617600471790001</p>
+    </div>
+
+    <!-- Other Donation Methods -->
+    <div class="max-w-2xl mx-auto mb-10">
+      <h3 class="text-2xl font-bold text-emerald-800 mb-4">طرق التبرع الأخرى</h3>
+      <p class="text-lg text-emerald-700 mb-2">📱 عبر الهاتف مع وكيل المدرسة:</p>
+      <p class="text-xl font-bold text-emerald-900 mb-1">جمعة المخمري – 92328696</p>
+      <p class="text-emerald-600 mb-4">الحساب مفعل في بنك مسقط</p>
+      <p class="text-md text-emerald-700">
+        يمكنكم أيضًا التبرع بالمواد العينية أو بدفع قيمة شرائها حسب الحاجة.
+      </p>
+    </div>
+
+    <!-- Motivation -->
+    <div class="bg-emerald-100 px-6 py-5 rounded-xl shadow-inner max-w-3xl mx-auto mb-10">
+      <p class="text-lg text-gray-800 font-medium leading-relaxed">
+        💚 لا تحتقر التبرع مهما قلّ، فلبنة واحدة تسهم في بناء هذا الصرح المبارك. 
+        <br>
+        تبرعك هو صدقة جارية، يثمر لك أجرًا دائمًا ما دامت المدرسة قائمة بإذن الله.
+      </p>
+    </div>
+
+    <!-- CTA Button -->
+    <a href="https://wa.me/96892328696" target="_blank" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold py-3 px-8 rounded-full shadow-md transition duration-300">
+      💸 تبرع الآن عبر الواتساب
+    </a>
+  </div>
+</section>
+
+            
+            <!--<div class="max-w-4xl mx-auto">
+                <div class="mb-10">
+                    <div class="flex justify-between mb-2">
+                        <span class="font-bold text-emerald-800">المبلغ المستهدف: 2,000,000</span>
+                        <span class="font-bold text-emerald-800">المبلغ المجمع: 1,400,000 (50%)</span>
+                    </div>
+                    <div class="donation-progress">
+                        <div class="progress-bar" style="width: 50%"></div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="donation-card bg-white p-6 rounded-lg shadow-md text-center">
+                        <h3 class="text-xl font-bold text-emerald-800 mb-3">بناء فصل دراسي</h3>
+                        <p class="text-gray-600 mb-4">ساهم في بناء فصل دراسي كامل يستفيد منه الطلاب لسنوات طويلة</p>
+                        <div class="text-2xl font-bold text-emerald-700 mb-4">50,000</div>
+                        <button class="donate-btn bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-bold transition-all duration-300 w-full" data-amount="50000">تبرع الآن</button>
+                    </div>
+                    
+                    <div class="donation-card bg-white p-6 rounded-lg shadow-md text-center transform scale-105 border-2 border-emerald-500">
+                        <div class="absolute -top-3 right-0 left-0 mx-auto w-max bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-bold">الأكثر شعبية</div>
+                        <h3 class="text-xl font-bold text-emerald-800 mb-3">بناء مكتبة</h3>
+                        <p class="text-gray-600 mb-4">ساهم في بناء وتجهيز مكتبة متكاملة لخدمة الطلاب والمعلمين</p>
+                        <div class="text-2xl font-bold text-emerald-700 mb-4">100,000</div>
+                        <button class="donate-btn bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-bold transition-all duration-300 w-full" data-amount="100000">تبرع الآن</button>
+                    </div>
+                    
+                    <div class="donation-card bg-white p-6 rounded-lg shadow-md text-center">
+                        <h3 class="text-xl font-bold text-emerald-800 mb-3">تجهيز مختبر صوتيات</h3>
+                        <p class="text-gray-600 mb-4">ساهم في تجهيز مختبر صوتيات متطور لتحسين تلاوة الطلاب</p>
+                        <div class="text-2xl font-bold text-emerald-700 mb-4">75,000</div>
+                        <button class="donate-btn bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-bold transition-all duration-300 w-full" data-amount="75000">تبرع الآن</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-bold text-emerald-800 mb-6 text-center">تبرع بمبلغ آخر</h3>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <button class="amount-btn bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-4 py-3 rounded-lg font-bold transition-all duration-300 border-2 border-transparent focus:border-emerald-500" data-amount="100">100</button>
+                        <button class="amount-btn bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-4 py-3 rounded-lg font-bold transition-all duration-300 border-2 border-transparent focus:border-emerald-500" data-amount="500">500</button>
+                        <button class="amount-btn bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-4 py-3 rounded-lg font-bold transition-all duration-300 border-2 border-transparent focus:border-emerald-500" data-amount="1000">1,000</button>
+                        <button class="amount-btn bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-4 py-3 rounded-lg font-bold transition-all duration-300 border-2 border-transparent focus:border-emerald-500" data-amount="5000">5,000</button>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="custom-amount" class="block text-gray-700 font-bold mb-2">أو أدخل مبلغًا آخر</label>
+                        <div class="relative">
+                            <input type="number" id="custom-amount" class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-emerald-500 focus:outline-none" placeholder="أدخل المبلغ هنا">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2">اختر طريقة الدفع</label>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="payment-method bg-emerald-50 p-4 rounded-lg border-2 border-transparent hover:border-emerald-500 cursor-pointer flex items-center justify-center">
+                                <svg class="h-8 w-8 text-emerald-700 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                </svg>
+                                <span class="font-bold">بطاقة ائتمان</span>
+                            </div>
+                            <div class="payment-method bg-emerald-50 p-4 rounded-lg border-2 border-transparent hover:border-emerald-500 cursor-pointer flex items-center justify-center">
+                                <svg class="h-8 w-8 text-emerald-700 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                <span class="font-bold">محفظة إلكترونية</span>
+                            </div>
+                            <div class="payment-method bg-emerald-50 p-4 rounded-lg border-2 border-transparent hover:border-emerald-500 cursor-pointer flex items-center justify-center">
+                                <svg class="h-8 w-8 text-emerald-700 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                                </svg>
+                                <span class="font-bold">تحويل بنكي</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button id="submit-donation" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold transition-all duration-300 shadow-md hover:shadow-lg">تبرع الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </section>
+<!-- School Needs Section -->
+<section id="needs" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-emerald-800 mb-4">احتياجات المدرسة الحالية</h2>
+            <div class="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">في هذه المرحلة من المشروع، نعرض عليكم أبرز احتياجات المدرسة لاستكمال البناء والتجهيز</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="need-card bg-emerald-50 p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-emerald-200 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-emerald-700 font-bold text-xl">١</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-emerald-800">تشطيب الفصول الدراسية</h4>
+                        <p class="text-gray-600 text-sm">المرحلة الأولى</p>
+                    </div>
+                </div>
+                <p class="text-gray-700">نحتاج لتجهيز 6 فصول دراسية بالبلاط، الأبواب، الشبابيك، والدهانات لتهيئتها لاستقبال الطلاب.</p>
+            </div>
+
+            <div class="need-card bg-emerald-50 p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-emerald-200 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-emerald-700 font-bold text-xl">٢</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-emerald-800">تجهيز دورات المياه</h4>
+                        <p class="text-gray-600 text-sm">المرحلة الثانية</p>
+                    </div>
+                </div>
+                <p class="text-gray-700">تشمل السباكة، تركيب المراحيض والمغاسل، بالإضافة إلى التهوية الجيدة لضمان بيئة صحية للطلاب.</p>
+            </div>
+
+            <div class="need-card bg-emerald-50 p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-emerald-200 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                        <span class="text-emerald-700 font-bold text-xl">٣</span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-emerald-800">توفير الأثاث المدرسي</h4>
+                        <p class="text-gray-600 text-sm">المرحلة الثالثة</p>
+                    </div>
+                </div>
+                <p class="text-gray-700">شراء الطاولات والكراسي للطلاب والمعلمين، بالإضافة إلى ألواح الكتابة والأرفف المكتبية.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+   <!-- FAQ Section -->
+<section class="py-16 bg-emerald-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-emerald-800 mb-4">الأسئلة الشائعة</h2>
+            <div class="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                إجابات على الأسئلة الأكثر شيوعًا حول مشروع بناء مدرسة القرآن الكريم
+            </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+            <!-- سؤال 1 -->
+            <div class="mb-6">
+                <button class="faq-question w-full bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                    <span class="font-bold text-emerald-800">كيف يمكنني التبرع للمشروع؟</span>
+                    <svg class="faq-icon h-5 w-5 text-emerald-600 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="faq-answer bg-white px-4 pb-4 rounded-b-lg shadow-md hidden">
+                    <p class="text-gray-700 pt-2">
+                        
+                    يمكنك التبرع من خلال التحويل البنكي المباشر إلى حساب المشروع
+                                        </p>
+                </div>
+            </div>
+
+            <!-- سؤال 2 -->
+            <div class="mb-6">
+                <button class="faq-question w-full bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                    <span class="font-bold text-emerald-800">هل التبرع للمشروع يعتبر صدقة جارية؟</span>
+                    <svg class="faq-icon h-5 w-5 text-emerald-600 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="faq-answer bg-white px-4 pb-4 rounded-b-lg shadow-md hidden">
+                    <p class="text-gray-700 pt-2">
+                        نعم، التبرع لبناء مدرسة القرآن الكريم يعتبر من الصدقات الجارية التي ينتفع بها المسلم بعد وفاته، لقول النبي صلى الله عليه وسلم: "إذا مات ابن آدم انقطع عمله إلا من ثلاث: صدقة جارية، أو علم ينتفع به، أو ولد صالح يدعو له".
+                    </p>
+                </div>
+            </div>
+
+            <!-- سؤال 3 -->
+            <div class="mb-6">
+                <button class="faq-question w-full bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                    <span class="font-bold text-emerald-800">متى سيتم الانتهاء من المشروع؟</span>
+                    <svg class="faq-icon h-5 w-5 text-emerald-600 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="faq-answer bg-white px-4 pb-4 rounded-b-lg shadow-md hidden">
+                    <p class="text-gray-700 pt-2">
+                        من المتوقع الانتهاء من المشروع خلال عام من الآن، وذلك في حال اكتمال التمويل المطلوب. وسيتم افتتاح المدرسة واستقبال الطلاب مباشرة بعد الانتهاء من التجهيزات النهائية.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    // عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function () {
+        const questions = document.querySelectorAll('.faq-question');
+
+        questions.forEach(button => {
+            button.addEventListener('click', function () {
+                const answer = this.nextElementSibling;
+
+                // إغلاق جميع الإجابات المفتوحة
+                document.querySelectorAll('.faq-answer').forEach(el => {
+                    if (el !== answer) {
+                        el.classList.add('hidden');
+                        el.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+                    }
+                });
+
+                // تبديل العرض/الإخفاء لهذا السؤال
+                answer.classList.toggle('hidden');
+
+                // تدوير الأيقونة
+                const icon = this.querySelector('svg');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+    });
+</script>
+<!-- Contact Us Section -->
+<section id="contact" class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-emerald-800 mb-4">اتصل بنا</h2>
+      <div class="w-20 h-1 bg-emerald-600 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">لأي استفسارات أو للمساهمة في مشروع مدرسة القرآن الكريم، يمكنكم التواصل مع أحد الأعضاء التاليين:</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <!-- Person 1 -->
+      <div class="bg-emerald-50 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-bold text-emerald-800 mb-2">جمعة المخمري</h3>
+        <p class="text-gray-600 mb-1">وكيل المدرسة</p>
+        <p id="phone1" class="text-lg text-emerald-700 font-semibold mb-2">92328696</p>
+        <button onclick="copyToClipboard('phone1')" class="bg-emerald-600 hover:bg-emerald-700 text-white py-1 px-4 rounded-full text-sm">
+          نسخ الرقم
+        </button>
+      </div>
+
+      <!-- Person 2 -->
+      <div class="bg-emerald-50 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-bold text-emerald-800 mb-2">عيسى الوهيبي
+        </h3>
+        <p class="text-gray-600 mb-1">المسؤول المالي</p>
+        <p id="phone2" class="text-lg text-emerald-700 font-semibold mb-2">99541000</p>
+        <button onclick="copyToClipboard('phone2')" class="bg-emerald-600 hover:bg-emerald-700 text-white py-1 px-4 rounded-full text-sm">
+          نسخ الرقم
+        </button>
+      </div>
+
+      <!-- Person 3 -->
+      <div class="bg-emerald-50 p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-bold text-emerald-800 mb-2">خلفان السيابي</h3>
+        <p class="text-gray-600 mb-1">منسق التبرعات</p>
+        <p id="phone3" class="text-lg text-emerald-700 font-semibold mb-2">99332353</p>
+        <button onclick="copyToClipboard('phone3')" class="bg-emerald-600 hover:bg-emerald-700 text-white py-1 px-4 rounded-full text-sm">
+          نسخ الرقم
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Copy to Clipboard Script -->
+<script>
+  function copyToClipboard(elementId) {
+    const phone = document.getElementById(elementId).textContent;
+    navigator.clipboard.writeText(phone).then(() => {
+      alert('تم نسخ الرقم إلى الحافظة');
+    });
+  }
+</script>
+ <!-- Instagram Link -->
+  <section class="py-8 text-center">
+    <p class="text-xl mb-4">تابعنا على الإنستقرام:</p>
+    <a href="https://www.instagram.com/asma.bint.abibakar" target="_blank"
+       class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-6 rounded-full text-lg transition">
+      @asma.bint.abibakar
+    </a>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="py-10 px-4 max-w-6xl mx-auto">
+    <h2 class="text-2xl font-bold text-emerald-800 mb-6 text-center">صور من المشروع</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- Replace the src values with your actual image links -->
+       
+      <img src="WhatsApp Image 2025-02-13 at 12.25.14 PM.jpeg" alt="صورة 1" class="rounded-lg shadow-md">
+      <img src="WhatsApp Image 2025-02-13 at 12.25.14 PM (1).jpeg" alt="صورة 2" class="rounded-lg shadow-md">
+      <img src="WhatsApp Image 2025-02-13 at 12.25.13 PM (2).jpeg" alt="صورة 3" class="rounded-lg shadow-md">
+      <img src="WhatsApp Image 2025-02-13 at 12.25.13 PM (2).jpeg" alt="صورة 4" class="rounded-lg shadow-md">
+      <img src="3.jpg" alt="صورة 5" class="rounded-lg shadow-md">
+      <img src="WhatsApp Image 2025-02-13 at 12.25.12 PM.jpeg" alt="صورة 6" class="rounded-lg shadow-md">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-center py-6 mt-12">
+    <p class="text-sm text-gray-600">© 2025 مدرسة القرآن الكريم. جميع الحقوق محفوظة.</p>
+  </footer>
